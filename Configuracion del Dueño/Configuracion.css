@@ -1,0 +1,410 @@
+/* Para la cabecera del BarberTalk */
+*{
+    padding: 0;
+    margin: 0;
+}
+
+h1{
+    font: bold 50Spx Times, sans-serif;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 30px; /* Tamaño del cuadro  */   
+}
+
+p{
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+nav ul{
+    background-color: #757575;
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+}
+
+nav li {
+    display: inline-flex;
+}
+
+nav a{
+    font: bold 15px Times, sans-serif;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    width: 150px;
+}
+
+nav li:hover{
+    background-color: black;
+}
+
+body{
+    background-image: url(img/FondoConfiguracion.png);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+} 
+
+
+/* Aqui va los estilos de la configuracion que hace el dueño */
+/* CUADRO 1 */
+.container {
+    display: flex;
+    width: 900px; /* Espacio entre el borde de la pagina para el contenedor de las imagenes */
+    gap: 30px;   /* Espacio entre cada cuadro de la imagen*/
+    text-align: center;
+    margin: 0 auto;
+    line-height: 200px; 
+}
+
+.container > div {
+    border-radius: 4%;
+    background-color: white;
+    border-color: black; 
+    padding: 20px 0;
+    font-size: 20px;
+    margin-top: 20px; 
+    border: 3px solid black;
+    opacity: 87%;
+}
+
+.Complicated{
+    flex: 1;
+}
+
+h2{
+    font-size: 25px;
+    position: absolute;
+    top: 13%;
+    left: 23%; 
+    color: black;
+}
+
+.container > .Complicated > .dia-horaA{
+    align-items: center;
+    text-align: justify; 
+    font-size: 18px;  
+    line-height: 40px;
+    margin-left: 1%;
+    margin-right: 3%;
+    position: absolute;
+    top: 30%;
+    left: 22%; 
+}
+
+.container > .Complicated > .dia-horaB{
+    align-items: center;
+    text-align: justify; 
+    font-size: 18px;  
+    line-height: 40px;
+    margin-left: 1%;
+    margin-right: 3%;
+    position: absolute;
+    top: 35%;
+    left: 22%; 
+}
+
+.container > .Complicated > .dia-horaC{
+    align-items: center;
+    text-align: justify; 
+    font-size: 18px;  
+    line-height: 40px;
+    margin-left: 1%;
+    margin-right: 3%;
+    position: absolute;
+    top: 40%;
+    left: 22%; 
+}
+
+
+
+
+.container > .Complicated > .p4{
+    font-size: 18px;
+    position: absolute;
+    top: 19%;
+    left: 17%; 
+    color: black;
+    width: 20%;
+}
+
+.container > .Complicated > .corteP{
+    position: absolute;
+    top: 30.5%;
+    left: 33%;
+    width: 10%;
+    
+    background: white;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 15px;
+    color: black;
+} 
+
+
+.container > .Complicated > .p5{
+    font-size: 18px;
+    position: absolute;
+    top: 25%;
+    left: 17.5%; 
+    color: black;
+    width: 10%;
+}
+
+.container > .Complicated > .corteB{
+    position: absolute;
+    top: 36.5%;
+    left: 33%;
+    width: 10%;
+    background: white;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 15px;
+    color: black;
+}
+
+.imgbar{
+    position: absolute;
+    top: 25%;
+    left: 57%;
+    border: 3px solid black;
+    
+}
+
+h3{
+    font-size: 18px;
+    position: absolute;
+    top: 43%;
+    left: 25%; 
+    color: black;
+}
+
+.boton{
+    /* font: bold 15px Arial, sans-serif; */
+    font-size: 13px;
+    color: white;
+    background-color: black;
+    position: absolute;
+    top: 43%;
+    left: 24%;
+    width: 20%;
+    background: #757575;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    border: 3px solid black;
+    text-align: center;
+}  
+
+.lineahorizontal{
+    border: 2px solid #000;
+  }
+
+
+
+
+/* Programacion del estilo de registrar un nuevo trabajador */
+.container > .Complicated > .p7{
+    font-size: 18px;
+    color: black;
+    width: 20%;
+    position: absolute;
+    top: 48%;
+    left: 18%;
+}
+
+.container > .Complicated > .nombreR{
+    position: absolute;
+    top: 60%;
+    left: 37%;
+    width: 15%;
+    background: white;
+    padding: 1.5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 15px;
+    color: black;
+}
+
+.container> .Complicated > .p8{
+    font-size: 18px;
+    position: absolute;
+    top: 53%;
+    left: 20.5%; 
+    color: black;
+    width: 20%;
+}
+
+.container > .Complicated > .nomU{
+    position: absolute;
+    top: 65%;
+    left: 37%;
+    width: 15%;
+    background: white;
+    padding: 1.5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 15px;
+    color: black;
+}
+
+.container > .Complicated > .p9{
+    font-size: 18px;
+    position: absolute;
+    top: 58%;
+    left: 19.5%; 
+    color: black;
+    width: 20%;
+}
+
+.container> .Complicated > .Papellido{
+    position: absolute;
+    top: 70%;
+    left: 37%;
+    width: 15%;
+    background: white;
+    padding: 1.5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 15px;
+    color: black;
+}
+
+.container > .Complicated > .p10{
+    font-size: 18px;
+    position: absolute;
+    top: 63%;
+    left: 20%; 
+    color: black;
+    width: 20%;
+}
+
+ .container> .Complicated > .Sapellido{
+    position: absolute;
+    top: 75%;
+    left: 37%;
+    width: 15%;
+    background: white;
+    padding: 1.5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 15px;
+    color: black;
+}
+
+.container > .Complicated > .p11{
+    font-size: 18px;
+    position: absolute;
+    top: 48%;
+    left: 44.5%; 
+    color: black;
+    width: 20%;
+}
+
+ .container> .Complicated > .correo{
+    position: absolute;
+    top: 60%;
+    left: 58%;
+    width: 15%;
+    background: white;
+    padding: 1.5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 15px;
+    color: black;
+} 
+
+.container > .Complicated > .p12{
+    font-size: 18px;
+    position: absolute;
+    top: 53%;
+    left: 45%; 
+    color: black;
+    width: 20%;
+}
+
+ .container> .Complicated > .telefono{
+    position: absolute;
+    top: 65%;
+    left: 58%;
+    width: 15%;
+    background: white;
+    padding: 1.5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 15px;
+    color: black;
+} 
+
+.container > .Complicated > .p13{
+    font-size: 18px;
+    position: absolute;
+    top: 58%;
+    left: 46.5%; 
+    color: black;
+    width: 20%;
+}
+
+.container > .Complicated > select{
+    font-size: 15px;
+    position: absolute;
+    top: 70%;
+    left: 60.5%; 
+    color: black;
+    width: 13%;
+}
+
+.container > .Complicated > .p14{
+    font-size: 18px;
+    position: absolute;
+    top: 63%;
+    left: 45.5%; 
+    color: black;
+    width: 20%;
+}
+
+.container > .Complicated > .contraseña{
+    font-size: 15px;
+    position: absolute;
+    top: 75%;
+    left: 60%; 
+    color: black;
+    width: 13.5%;
+}
+
+.container > .Complicated > .botonRegistrar{
+    font-size: 15px;
+    position: absolute;
+    top: 55%;
+    left: 11.5%; 
+    color: black;
+    width: 70%;
+}
+
+
+
+

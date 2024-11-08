@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Talk</title>
+    <link rel="stylesheet" href="BarTal.css">
+    <link rel="icon" href="img/logo2.ico"> <!-- Para el icono de la pagina -->
+</head>
+
+<body>
+    
+        <!-- Cabecera del titulo y menu de barber talk -->
+    <div class="Fondo1"> 
+    <header>
+    <h1>Barber Talk</h1>
+        <nav>
+            <ul>  
+                <form class="d-flex" role="search">             
+                    <li><a href="Registro.php">Registrate</a></li>
+
+                    <!-- Este es para iniciar sesion -->
+                    <select id="opcion"  onchange="irAPagina()">
+                       
+                        <option value="0">Iniciar sesión:</option>
+                        <option value="1">Iniciar sesión Usuario</option>
+                        <option value="2">Iniciar sesión Trabajador</option>
+                    </select>
+                    
+                    <script>
+                        function irAPagina() {
+                            var opcionSeleccionada = document.getElementById("opcion").value;
+                            if (opcionSeleccionada === "1") {
+                                window.location.href = "Inicio2.php"; // URL para iniciar sesión de usuario
+                            } else if (opcionSeleccionada === "2") {
+                                window.location.href = "InicioTrabajador.php"; // URL para iniciar sesión de trabajador
+                            }
+                        }
+                    </script>
+                    
+                    <li><a href="Informacion.html">Información</a></li>
+                    <li><a href="PreguntasF.html">Preguntas frecuentes</a></li>
+              </form>
+            </ul>
+        </nav>
+    </header>
+
+
+     <!-- Esto es para la presentacion de la Barberia -->
+     <div class="c1">
+    <div class="d1">
+    <div class="contenido">
+                <div>
+                    <h2>Barber Talk</h2>
+                    <br>
+                    <p>En Barber Talk, ofrecemos una amplia gama de servicios de barbería para hombres de todas las edades,
+                         desde cortes de pelo clásicos hasta estilos modernos y vanguardistas. 
+                         Nuestros barberos expertos utilizan las mejores técnicas y productos para ayudarte a conseguir el
+                        look que deseas, ya sea que busques un afeitado apurado, un tratamiento para el cabello.
+                    </p>
+                </div>
+                
+            </div>
+            <div class="BarbaInicio" ><img  src="img/BarbaInicio.png" alt="No se encontro"></div>
+            <div class="botonInicio"> <p><a href="Inicio2.php"><input  class="botonI" type="button" value="Agenda tu cita"href="PerfilUsuario.html"></a></p></div> 
+            
+        </div>
+     </div> <!-- Este div cierra lo del diseño de c1 de la opacidad -->
+   
+
+<br>
+
+         <!--Esto es para las imagenes que van a lado de la presentación -->
+         <div class="S">
+            <br>
+            <h2>Servicios que ofrecemos</h2>
+            <br>
+            <img class="servicios" src="img/servicios.png" alt="No se encontro">
+            <br>
+            <br>
+                
+             </div> <!-- Este div cierra lo del diseño de c1 de la opacidad -->
+<br>
+<br>
+            </div> <!-- Esto cierra la imagen del fondo 1 -->
+
+
+        <!-- Esto es para la seccion de "Nuestro equipo de Barberos" -->
+            <div class="Fondo2">
+            <div class="E">
+            <div class="Equipo">
+                <br>
+                    <div>
+                         <h3>Nuestro equipo de Barberos</h3>
+                        <br>
+                        
+                            <img class="barbero1" src="img/barbero1.png" style="margin-right: 3%;" alt="No se encontro la imagen">
+                            <img class="barbero2" src="img/barbero2.png" alt="No se encontro la imagen">
+                    </div>
+                </div>
+            </div>
+            <br>
+           </div>  <!-- Este cierra el fondo 2 -->
+
+
+
+           <!-- Esto es para los datos de la barberia y del AxolBit -->
+           <div class="Fondo3">
+            <div class="datos">
+                <br>
+                <img class="BarberAbajo" src="img/BarberTabajo.png" alt="No se encontro la imagen">
+                <p>Contamos con 10 años de experiencia , haciendo lucir fanstatiscos a nuestros clientes.</p>
+                <br>
+                <div class="masinfo">
+                <div class="info">
+                <h4>Más Información</h4>
+                    <li><a href="Inicio2.php">-Agendar cita</a></li>
+                    <li><a href="Informacion.html">-Información</a></li>
+                    <li><a href="PreguntasF.html">-Preguntas frecuentes</a></li>
+                 </div>
+                    <br>
+                
+                <div class="ubicacion">
+                    <h5>Ubicación</h5>
+                    <p>Emiliano Zapata 1, Centro, 28510 Quesería, Col.</p>
+                    <h6>✆ 312 199 8241</h6>
+                    <br>
+                    <br>
+                    <h7>AxolBit es una empresa Mexicana  dedicada a la creación de sitios Web</h7>
+                    <p class="marca">© AxolBit Derechos Reservados 2024</p>
+                </div>   
+
+                   
+                    
+                         
+                
+            </div>
+
+            </div>
+           </div>
+
+          
+             
+
+
+
+
+
+
+</body>
+</html>
