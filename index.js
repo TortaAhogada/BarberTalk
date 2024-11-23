@@ -25,3 +25,16 @@ const pool = new Pool({
     console.log('Pool cerrado.');
   }
 })();
+
+const express = require ('express')
+const app=express();
+
+app.get('/',(req,res)=>{
+    res.send('<h1>Este es el título principal de la página.</h1>')
+})
+
+const PUERTO= 5432;
+
+app.listen(PUERTO, ()=>{
+    console.log(`El servidor esta escuchando en el puerto ${PUERTO}`)
+})
