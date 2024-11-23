@@ -12,7 +12,7 @@ const pool = new Pool({
     console.log('Conexión exitosa a la base de datos.');
 
     // Consulta para obtener todos los registros de la tabla "cliente"
-    const res = await client.query('SELECT * FROM trabajador;');
+    const res = await client.query('SELECT * FROM cliente;');
     console.log('Registros de la tabla "cliente":', res.rows);
 
     // Libera el cliente
