@@ -29,7 +29,7 @@ const pool = new Pool({
 const express = require ('express')
 const app=express();
 
-app.get('/',(req,res)=>{
+app.get('https://pruebas-azure-omega.vercel.app/?vercelToolbarCode=9lfg3zMOhrFmTSX',(req,res)=>{
     res.send('<h1>Este es el título principal de la página.</h1>')
 })
 
