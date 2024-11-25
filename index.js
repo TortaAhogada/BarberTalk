@@ -14,5 +14,5 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req,res)=>{
-    res.send('<h1>Te amo te amo con todo mi corazon mi princesa hermosha <3 </h1>')
+    res.send('<h1>Este es la pagina principal del proyecto</h1>')
 })
