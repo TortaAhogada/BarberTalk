@@ -14,5 +14,5 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req,res)=>{
-    res.send('<h1>Este es la pagina principal del proyecto</h1>')
+    res.send('<h1>Este es la pagina principal del proyecto|</h1>')
 })
