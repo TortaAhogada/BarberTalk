@@ -174,9 +174,7 @@ routerCliente.delete('/:id', async (req, res) => {
         RETURNING *;
       `;
   
-      const valores = [id];
-  
-      const resultado = await ejecutarConsulta(consultaSQL, valores);
+      const resultado = await ejecutarConsulta(consultaSQL);
   
       if (resultado.length === 0) {
         return res.status(404).json({
