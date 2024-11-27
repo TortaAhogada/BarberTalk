@@ -1,11 +1,16 @@
+//Se importa de la libreria pg, pool el cual es utilizado para realizar la conexión a la base de atos
 const { Pool } = require('pg');
 
-// Configuración del pool de conexiones
+// Configuración de la conexión a la base de datos en la nube
 const pool = new Pool({
   connectionString: "postgres://default:eVWlOCi8a4pE@ep-weathered-dew-a417d6tq-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require",
 });
 
-// Función genérica para ejecutar consultas
+/*
+  Función para poder realizar las consultas de SQL,
+  este recibe la sentencia sql y las manda para ejecutarlas
+  en la base de datos.
+*/
 const ejecutarConsulta = async (consultaSQL) => {
   try {
     const result = await pool.query(consultaSQL);
@@ -16,7 +21,7 @@ const ejecutarConsulta = async (consultaSQL) => {
   }
 };
 
-
+//Método para poder exportar el modulo ejecutarConsulta, 
 
 module.exports = {
   ejecutarConsulta,

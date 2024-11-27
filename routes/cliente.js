@@ -1,19 +1,29 @@
-const express = require('express');
+//Importación de las librerías utilizadas en el proyecto
+const express = require('express'); 
 const routerCliente = express.Router();
-const { ejecutarConsulta } = require('./db'); // Importa la función desde db.js
+const { ejecutarConsulta } = require('./db');
+
 
 // Endpoint GET para obtener todos los clientes
 routerCliente.get('/', async (req, res) => {
   try {
     // Consulta SQL
-    const consultaSQL = 'SELECT * FROM cliente;';
+    const consultaSQL = 'SELECT * FROM cliente;'; // Consulta SQL 
     
-    // Ejecuta la consulta llamando a la función genérica
+    /* 
+      Función ejecutarConsulta()
+      Función para realizar la consulta a la base de datos
+      Recibe sentencias en SQL
+    */
     const clientes = await ejecutarConsulta(consultaSQL);
 
-    // Responde con los datos obtenidos
+    // Responde con los datos obtenidos modificando el estado a 200
     res.status(200).send(JSON.stringify(clientes));
-  } catch (error) {
+  } 
+  /*
+  Bloque para manejar un error al realizar la consulta sql
+  */
+  catch (error) {
     console.error('Error al manejar la solicitud:', error.message || error);
     res.status(500).json({
       success: false,
@@ -23,12 +33,20 @@ routerCliente.get('/', async (req, res) => {
 });
 
 // Endpoint GET para obtener un cliente por ID
+
+//Se define el router para que el cliente pueda ingresar el id_cliente en la URL
 routerCliente.get('/:id', async (req, res) => {
     const { id } = req.params; // Obtén el parámetro dinámico de la URL
   
     try {
-      const consultaSQL = `SELECT * FROM cliente WHERE id_cliente = ${id};`; // Consulta SQL con un parámetro
-      const cliente = await ejecutarConsulta(consultaSQL); // Pasa el id como parámetro
+      const consultaSQL = `SELECT * FROM cliente WHERE id_cliente = ${id};`; // Consulta SQL 
+
+      /* 
+        Función ejecutarConsulta()
+        Función para realizar la consulta a la base de datos
+        Recibe sentencias en SQL
+      */
+      const cliente = await ejecutarConsulta(consultaSQL);
   
       if (cliente.length === 0) {
         // Si no se encuentra el cliente, responde con un 404
@@ -37,12 +55,16 @@ routerCliente.get('/:id', async (req, res) => {
           message: `Cliente con id ${id} no encontrado`,
         });
       }
-  
+      // Responde con los datos obtenidos modificando el estado a 200
       res.status(200).json({
         success: true,
         data: cliente[0], // Devuelve el primer (y único) registro
       });
-    } catch (error) {
+    } 
+    /*
+      Bloque para manejar un error al realizar la consulta sql
+    */
+    catch (error) {
       console.error('Error al manejar la solicitud:', error.message || error);
       res.status(500).json({
         success: false,
@@ -53,6 +75,7 @@ routerCliente.get('/:id', async (req, res) => {
 
   // Método POST para crear un nuevo cliente
 routerCliente.post('/', async (req, res) => {
+    // Se define una constante donde se extrae los datos del cuerpo de la solicitud
     const {
       nombre,
       primer_apellido,
@@ -66,10 +89,10 @@ routerCliente.post('/', async (req, res) => {
       calle,
       num_direccion,
       colonia,
-    } = req.body; // Extraemos los datos del cuerpo de la solicitud
+    } = req.body; // Obtiene los datos enviados en el cuerpo de la solicitud
   
     try {
-      // Consulta SQL para insertar un nuevo cliente
+      // Consulta SQL para insertar un nuevo cliente, se utiliza los atributos definidos anteriormente
       const consultaSQL = `
         insert into Cliente (Nombre, primer_apellido, 
         segundo_apellido, correo, num_telefono, nom_usuario, 
@@ -88,15 +111,24 @@ routerCliente.post('/', async (req, res) => {
         ${num_direccion},
         '${colonia}');`;
   
-      // Ejecutamos la consulta con los valores recibidos
+      /* 
+        Función ejecutarConsulta()
+        Función para realizar la consulta a la base de datos
+        Recibe sentencias en SQL
+      */
       const nuevoCliente = await ejecutarConsulta(consultaSQL,);
-  
+      
+      // Responde con los datos obtenidos modificando el estado a 201
       res.status(201).json({
         success: true,
         message: 'Cliente creado exitosamente',
         data: nuevoCliente[0], // Retornamos el cliente recién creado
       });
-    } catch (error) {
+    } 
+    /*
+      Bloque para manejar un error al realizar la consulta sql
+    */
+    catch (error) {
       console.error('Error al crear cliente:', error.message || error);
       res.status(500).json({
         success: false,
@@ -106,8 +138,13 @@ routerCliente.post('/', async (req, res) => {
   });
 
   // Método PUT para actualizar un cliente existente
-routerCliente.put('/:id', async (req, res) => {
+
+    //Se define el router para que el cliente pueda ingresar el id_cliente en la URL
+    routerCliente.put('/:id', async (req, res) => {
+    
     const { id } = req.params; // Obtiene el id_cliente de los parámetros de la URL
+
+    // Se define una constante donde se extrae los datos del cuerpo de la solicitud
     const {
       nombre,
       primer_apellido,
@@ -124,6 +161,7 @@ routerCliente.put('/:id', async (req, res) => {
     } = req.body; // Obtiene los datos enviados en el cuerpo de la solicitud
 
     try {
+      // Consulta SQL para insertar un nuevo cliente, se utiliza los atributos definidos anteriormente
       const consultaSQL = `
         UPDATE cliente SET nombre = '${nombre}',
           primer_apellido = '${primer_apellido}',
@@ -139,22 +177,34 @@ routerCliente.put('/:id', async (req, res) => {
           colonia = '${colonia}'
         WHERE id_cliente = ${id}
         RETURNING *;`;
-  
+      
+      /* 
+        Función ejecutarConsulta()
+        Función para realizar la consulta a la base de datos
+        Recibe sentencias en SQL
+      */
       const resultado = await ejecutarConsulta(consultaSQL);
-        console.log(resultado[0])
+      /*
+      En caso de que la respuesta tenga un longitud de 0, 
+      significa que no funciono de manera correcta la ejecución en la base de datos
+      */
       if (resultado.length === 0) {
         return res.status(404).json({
           success: false,
           message: `Cliente con id ${id} no encontrado`,
         });
       }
-  
+      // Responde con los datos obtenidos en la consulta y un mensaje de exito
       res.json({
         success: true,
         message: 'Cliente actualizado exitosamente',
         data: resultado[0],
       });
-    } catch (error) {
+    } 
+    /*
+      Bloque para manejar un error al realizar la consulta sql
+    */
+    catch (error) {
       console.error('Error al actualizar cliente:', error.message || error);
       res.status(500).json({
         success: false,
@@ -163,32 +213,49 @@ routerCliente.put('/:id', async (req, res) => {
     }
   });
 
-  // Método DELETE para eliminar un cliente existente
-routerCliente.delete('/:id', async (req, res) => {
+    // Método DELETE para eliminar un cliente existente
+
+    //Se define el router para que el cliente pueda ingresar el id_cliente en la URL
+    routerCliente.delete('/:id', async (req, res) => {
     const { id } = req.params; // Obtiene el id_cliente de los parámetros de la URL
   
     try {
+      //Se define la consulta en una constante
       const consultaSQL = `
         DELETE FROM cliente
         WHERE id_cliente = ${id}
         RETURNING *;
       `;
-  
+      
+      /* 
+        Función ejecutarConsulta()
+        Función para realizar la consulta a la base de datos
+        Recibe sentencias en SQL
+      */
       const resultado = await ejecutarConsulta(consultaSQL);
-  
+      
+      /*
+      En caso de que la respuesta tenga un longitud de 0, 
+      significa que no funciono de manera correcta la ejecución en la base de datos
+      */
       if (resultado.length === 0) {
         return res.status(404).json({
           success: false,
           message: `Cliente con id ${id} no encontrado`,
         });
       }
-  
+      
+      // Responde con los datos obtenidos en la consulta y un mensaje de exito
       res.json({
         success: true,
         message: `Cliente con id ${id} eliminado exitosamente`,
         data: resultado[0],
       });
-    } catch (error) {
+    } 
+    /*
+      Bloque para manejar un error al realizar la consulta sql
+    */
+      catch (error) {
       console.error('Error al eliminar cliente:', error.message || error);
       res.status(500).json({
         success: false,
@@ -198,7 +265,9 @@ routerCliente.delete('/:id', async (req, res) => {
   });
   
   
-
+/*
+  Método para poder exportar los routers de cliente, 
+*/
 module.exports = routerCliente;
 
 
