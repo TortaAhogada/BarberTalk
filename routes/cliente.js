@@ -4,7 +4,31 @@ const routerCliente = express.Router();
 const { ejecutarConsulta } = require('./db');
 
 
-// Endpoint GET para obtener todos los clientes
+/* 
+Metodo routerCliente.get
+Proposito: Obtenerlos datos de todos los clientes registrados
+Parametro de entrada: Ninguno
+Parametro de salida: Array de clientes con la siguiente estructura:
+{
+    "id_cliente": 3,
+    "nombre": "joaquin",
+    "primer_apellido": "guzman",
+    "segundo_apellido": "loera",
+    "correo": "correo@gmail.com",
+    "num_telefono": "31215",
+    "nom_usuario": "elchapo",
+    "contraseña": "123456",
+    "edad": 56,
+    "sexo": "Masculino",
+    "calle": "calle",
+    "num_direccion": 13,
+    "colonia": "delfin"
+  },
+Ejecución: Mediante la URL https://barber-talk.vercel.app/cliente (En la web o Postman)
+
+Endpoint: localizado en index.js
+app.use('/cliente', routerCliente);
+*/
 routerCliente.get('/', async (req, res) => {
   try {
     // Consulta SQL
@@ -15,7 +39,7 @@ routerCliente.get('/', async (req, res) => {
       Función para realizar la consulta a la base de datos
       Recibe sentencias en SQL
     */
-    const clientes = await ejecutarConsulta(consultaSQL);
+    const clientes = await ejecutarConsulta(consultaSQL); //Método ubicado en db.js
 
     // Responde con los datos obtenidos modificando el estado a 200
     res.status(200).send(JSON.stringify(clientes));
@@ -32,9 +56,30 @@ routerCliente.get('/', async (req, res) => {
   }
 });
 
-// Endpoint GET para obtener un cliente por ID
-
-//Se define el router para que el cliente pueda ingresar el id_cliente en la URL
+/* 
+Metodo routerCliente.get
+Proposito: Obtener los datos de un cliente en especifico
+Parametro de entrada: Id del cliente
+Parametro de salida: Array con datos del cliente en el formato:
+{
+    "id_cliente": 3,
+    "nombre": "joaquin",
+    "primer_apellido": "guzman",
+    "segundo_apellido": "loera",
+    "correo": "correo@gmail.com",
+    "num_telefono": "31215",
+    "nom_usuario": "elchapo",
+    "contraseña": "123456",
+    "edad": 56,
+    "sexo": "Masculino",
+    "calle": "calle",
+    "num_direccion": 13,
+    "colonia": "delfin"
+  }
+Ejecución: Mediante la URL https://barber-talk.vercel.app/cliente/(id_cliente) (En la web o Postman)
+Endpoint: localizado en index.js
+app.use('/cliente', routerCliente);
+*/
 routerCliente.get('/:id', async (req, res) => {
     const { id } = req.params; // Obtén el parámetro dinámico de la URL
   
@@ -73,7 +118,44 @@ routerCliente.get('/:id', async (req, res) => {
     }
   });
 
-  // Método POST para crear un nuevo cliente
+  /* 
+    Metodo routerCliente.post
+    Proposito: Endpoint post para crear a un nuevo cliente
+    Parametro de entrada: Todos los atributos de la tabla cliente en formato JSON:
+    {
+      nombre,
+      primer_apellido,
+      segundo_apellido,
+      correo,
+      num_telefono,
+      nom_usuario,
+      contraseña,
+      edad,
+      sexo,
+      calle,
+      num_direccion,
+      colonia,
+    }
+      Parametro de salida: Mensaje de status y los datos del cliente recien agregado en el formato:
+      {
+        "id_cliente": 3,
+        "nombre": "joaquin",
+        "primer_apellido": "guzman",
+        "segundo_apellido": "loera",
+        "correo": "correo@gmail.com",
+        "num_telefono": "31215",
+        "nom_usuario": "elchapo",
+        "contraseña": "123456",
+        "edad": 56,
+        "sexo": "Masculino",
+        "calle": "calle",
+        "num_direccion": 13,
+        "colonia": "delfin"
+      }
+    Ejecución: Mediante la URL https://barber-talk.vercel.app/cliente (Postman)
+    Endpoint: localizado en index.js
+    app.use('/cliente', routerCliente);
+  */
 routerCliente.post('/', async (req, res) => {
     // Se define una constante donde se extrae los datos del cuerpo de la solicitud
     const {
@@ -137,7 +219,44 @@ routerCliente.post('/', async (req, res) => {
     }
   });
 
-  // Método PUT para actualizar un cliente existente
+  /* 
+    Metodo routerCliente.put
+    Proposito: Endpoint put para actualizar a un cliente
+    Parametro de entrada: Todos los atributos de la tabla cliente en formato JSON:
+    {
+      nombre,
+      primer_apellido,
+      segundo_apellido,
+      correo,
+      num_telefono,
+      nom_usuario,
+      contraseña,
+      edad,
+      sexo,
+      calle,
+      num_direccion,
+      colonia,
+    }
+    Parametro de salida: Mensaje de status y los datos del cliente actualidado en la siguiente estructura:
+    {
+        "id_cliente": 3,
+        "nombre": "joaquin",
+        "primer_apellido": "guzman",
+        "segundo_apellido": "loera",
+        "correo": "correo@gmail.com",
+        "num_telefono": "31215",
+        "nom_usuario": "elchapo",
+        "contraseña": "123456",
+        "edad": 56,
+        "sexo": "Masculino",
+        "calle": "calle",
+        "num_direccion": 13,
+        "colonia": "delfin"
+      }
+    Ejecución: Mediante la URL https://barber-talk.vercel.app/cliente/(id_cliente) (Postman)
+    Endpoint: localizado en index.js
+    app.use('/cliente', routerCliente);
+  */
 
     //Se define el router para que el cliente pueda ingresar el id_cliente en la URL
     routerCliente.put('/:id', async (req, res) => {
@@ -213,7 +332,30 @@ routerCliente.post('/', async (req, res) => {
     }
   });
 
-    // Método DELETE para eliminar un cliente existente
+    /* 
+      Metodo routerCliente.delete
+      Proposito: Endpoint delete para borrar a un cliente en especifico
+      Parametro de entrada: Id del cliente
+      Parametro de salida:Mensaje de status y los datos del cliente borrado en la estructura
+      {
+        "id_cliente": 3,
+        "nombre": "joaquin",
+        "primer_apellido": "guzman",
+        "segundo_apellido": "loera",
+        "correo": "correo@gmail.com",
+        "num_telefono": "31215",
+        "nom_usuario": "elchapo",
+        "contraseña": "123456",
+        "edad": 56,
+        "sexo": "Masculino",
+        "calle": "calle",
+        "num_direccion": 13,
+        "colonia": "delfin"
+      }
+      Ejecución: Mediante la URL https://barber-talk.vercel.app/cliente/(id_cliente) (Postman)
+      Endpoint: localizado en index.js
+      app.use('/cliente', routerCliente);
+    */
 
     //Se define el router para que el cliente pueda ingresar el id_cliente en la URL
     routerCliente.delete('/:id', async (req, res) => {
@@ -269,10 +411,3 @@ routerCliente.post('/', async (req, res) => {
   Método para poder exportar los routers de cliente, 
 */
 module.exports = routerCliente;
-
-
-
-
-
-  
-  
