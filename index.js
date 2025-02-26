@@ -15,12 +15,14 @@ app.use('/cliente', routerCliente);
 
 
 // Inicializar el servidor
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
 //Manejar una petición get en la pagina principal
 app.get('/', (req,res)=>{
-    res.send('<h1>Este es la pagina principal del proyecto|</h1>')
+    res.send('Bienvenido a la API de clientes');
 })
+
+module.exports = app;
