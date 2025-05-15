@@ -14,15 +14,16 @@ Parametro de salida: Respuesta de la ejecución en la base de datos
 Ejecución: Para ejecutarse se tiene que importar en el archivo const { ejecutarConsulta } = require('./db');
 En código se llama ejecutarConsulta("Ingresar sentencia sql")
 */
-const ejecutarConsulta = async (consultaSQL) => {
+const ejecutarConsulta = async (consultaSQL, parametros = []) => {
   try {
-    const result = await pool.query(consultaSQL);
-    return result.rows; // Devuelve las filas obtenidas
+    const result = await pool.query(consultaSQL, parametros);
+    return result.rows;
   } catch (error) {
     console.error('Error al ejecutar la consulta:', error.message || error);
-    throw error; // Propaga el error para manejarlo en otros lugares
+    throw error;
   }
 };
+
 
 //Exporta el método ejecutarConsulta para que sea utilizado en otros archivos
 
