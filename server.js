@@ -23,11 +23,13 @@ app.use(express.json());
 // Rutas
 const routerCliente = require('./routes/cliente');
 const routerRegistro = require('./routes/registro');
+const routerLogin = require('./routes/login');
+
 
 // Para las rutas que quieres proteger, agregas el middleware:
 app.use('/registro', csrfProtection, routerRegistro);
 app.use('/cliente', csrfProtection, routerCliente);
-
+app.use('/login', csrfProtection, routerLogin);
 
 
 // Ruta para enviar el token CSRF al frontend
