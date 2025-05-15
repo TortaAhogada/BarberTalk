@@ -1,9 +1,10 @@
 //Se importa de la libreria pg, pool el cual es utilizado para realizar la conexión a la base de datos
 const { Pool } = require('pg');
+require('dotenv').config();
 
 // Configuración de la conexión a la base de datos en la nube
 const pool = new Pool({
-  connectionString: "postgres://default:eVWlOCi8a4pE@ep-weathered-dew-a417d6tq-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require",
+  connectionString: process.env.POSTGRES_URL, 
 });
 
 /* 
