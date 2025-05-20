@@ -43,6 +43,18 @@ app.get('/', (req, res) => {
   res.send('Bienvenido a la API de clientes');
 });
 
+// Manejador de errores CSRF
+app.use((err, req, res, next) => {
+  if (err.code === 'EBADCSRFTOKEN') {
+    // Token CSRF inválido o ausente
+    return res.status(403).json({ error: 'Token CSRF inválido o faltante' });
+  }
+
+  // Otros errores
+  next(err);
+});
+ 
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
