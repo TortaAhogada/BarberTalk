@@ -15,7 +15,7 @@ const csrfProtection = csurf({
 });
 
 app.use(cors({
-  origin: 'http://localhost:5173', // <--- permite peticiones desde tu frontend
+  origin: 'https://barbertalk4.onrender.com/', // <--- permite peticiones desde tu frontend
   credentials: true
 }));
 app.use(express.json());
