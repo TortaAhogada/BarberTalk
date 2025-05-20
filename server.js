@@ -9,13 +9,13 @@ app.use(cookieParser());
 const csrfProtection = csurf({
   cookie: {
     httpOnly: true,
-    secure: false,  // Cambiar a true si usas HTTPS
+    secure: true,  // Cambiar a true si usas HTTPS
     sameSite: 'lax'
   }
 });
 
 app.use(cors({
-  origin: 'https://barbertalk4.onrender.com/', // <--- permite peticiones desde tu frontend
+  origin: 'https://barbertalk4.onrender.com', // <--- permite peticiones desde tu frontend
   credentials: true
 }));
 app.use(express.json());
