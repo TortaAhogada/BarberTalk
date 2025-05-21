@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors'); // <--- importa cors
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const csurf = require('csurf');
 
@@ -9,13 +9,13 @@ app.use(cookieParser());
 const csrfProtection = csurf({
   cookie: {
     httpOnly: true,
-    secure: true,  // Cambiar a true si usas HTTPS
+    secure: true, // Asegúrate de usar HTTPS en producción
     sameSite: 'lax'
   }
 });
 
 app.use(cors({
-  origin: 'https://barbertalk4.onrender.com', // <--- permite peticiones desde tu frontend
+  origin: 'https://barbertalk4.onrender.com',
   credentials: true
 }));
 app.use(express.json());
@@ -25,19 +25,15 @@ const routerCliente = require('./routes/cliente');
 const routerRegistro = require('./routes/registro');
 const routerLogin = require('./routes/login');
 
+// ✅ NO aplicar csrfProtection globalmente a estas rutas
+app.use('/registro', routerRegistro);
+app.use('/cliente', routerCliente);
+app.use('/login', routerLogin);
 
-// Para las rutas que quieres proteger, agregas el middleware:
-app.use('/registro', csrfProtection, routerRegistro);
-app.use('/cliente', csrfProtection, routerCliente);
-app.use('/login', csrfProtection, routerLogin);
-
-
-// Ruta para enviar el token CSRF al frontend
+// ✅ Mantener esta ruta protegida para obtener el token CSRF
 app.get('/api/csrf-token', csrfProtection, (req, res) => {
-  // Envía el token en json para que frontend lo use
   res.json({ csrfToken: req.csrfToken() });
 });
-
 
 app.get('/', (req, res) => {
   res.send('Bienvenido a la API de clientes');
@@ -46,14 +42,10 @@ app.get('/', (req, res) => {
 // Manejador de errores CSRF
 app.use((err, req, res, next) => {
   if (err.code === 'EBADCSRFTOKEN') {
-    // Token CSRF inválido o ausente
     return res.status(403).json({ error: 'Token CSRF inválido o faltante' });
   }
-
-  // Otros errores
   next(err);
 });
- 
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

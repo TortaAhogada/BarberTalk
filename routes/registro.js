@@ -3,9 +3,19 @@ const routerRegistro = express.Router();
 const { ejecutarConsulta } = require('./db');
 const bcrypt = require('bcrypt');
 
+const csurf = require('csurf');
+
+const csrfProtection = csurf({
+  cookie: {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax'
+  }
+});
+
 
 // Ruta para obtener todos los registros
-routerRegistro.post('/', async (req, res) => {
+routerRegistro.post('/',csrfProtection , async (req, res) => {
   const { nombre, edad, apellido1, apellido2, genero, calle, colonia, correo, telefono, contraseña, contraseña2, apodo } = req.body;
 
   if (!nombre || !edad || !apellido1 || !apellido2 || !genero || !calle || !colonia || !correo || !telefono || !contraseña || !contraseña2 || !apodo) {
