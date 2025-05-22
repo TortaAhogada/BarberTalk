@@ -16,6 +16,11 @@ const csrfProtection = csurf({
 
 // Ruta para obtener todos los registros
 routerRegistro.post('/',csrfProtection , async (req, res) => {
+  console.log('Cookie _csrf:', req.cookies._csrf);   // qué cookie está llegando
+  console.log('Token CSRF recibido en header:', req.get('X-CSRF-Token')); // token enviado por frontend
+  console.log('Token CSRF esperado por csurf:', req.csrfToken());  // token esperado por el middleware
+
+
   const { nombre, edad, apellido1, apellido2, genero, calle, colonia, correo, telefono, contraseña, contraseña2, apodo } = req.body;
 
   if (!nombre || !edad || !apellido1 || !apellido2 || !genero || !calle || !colonia || !correo || !telefono || !contraseña || !contraseña2 || !apodo) {

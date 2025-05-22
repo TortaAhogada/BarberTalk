@@ -32,8 +32,10 @@ app.use('/login', routerLogin);
 
 // ✅ Mantener esta ruta protegida para obtener el token CSRF
 app.get('/api/csrf-token', csrfProtection, (req, res) => {
+  console.log('Generando token CSRF:', req.csrfToken());  // <-- depuración aquí
   res.json({ csrfToken: req.csrfToken() });
 });
+
 
 app.get('/', (req, res) => {
   res.send('Bienvenido a la API de clientes');
