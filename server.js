@@ -28,7 +28,7 @@ const routerLogin = require('./routes/login');
 // ✅ NO aplicar csrfProtection globalmente a estas rutas
 app.use('/registro', routerRegistro);
 app.use('/cliente', routerCliente);
-app.use('/login', routerLogin);
+app.use('/iniciosesion', csrfProtection, routerLogin);
 
 // ✅ Mantener esta ruta protegida para obtener el token CSRF
 app.get('/api/csrf-token', csrfProtection, (req, res) => {
