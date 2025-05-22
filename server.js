@@ -10,7 +10,7 @@ const csrfProtection = csurf({
   cookie: {
     httpOnly: true,
     secure: true, // Asegúrate de usar HTTPS en producción
-    sameSite: 'lax'
+    sameSite: 'None'
   }
 });
 
