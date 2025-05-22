@@ -32,7 +32,7 @@ routerRegistro.post('/',csrfProtection , async (req, res) => {
   }
 
   if(!(/^[a-zA-Z][0-9a-zA-Z]{5,49}$/.test(apodo))){
-    return res.status(400).json({ error: 'El nombre de usuario solo puede contener letras y números, sin espacios y debe ser de una extension mínima de 6 caracteres' });
+    return res.status(400).json({ error: 'El nombre de usuario solo puede contener letras y números, sin espacios y debe ser de una extension mínima de 7 caracteres' });
   }
 
   if(!validarPassword(contraseña)){
